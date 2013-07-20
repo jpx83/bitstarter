@@ -7,7 +7,7 @@ var app = express.createServer(express.logger());
 
 
 var str = fs.readFileSync('/index.html');
-var buffer = new Buffer(str.length);
+var buf = new Buffer(str.length);
 for (var i = 0; i < str.length ; i++) {
   buf[i] = str.charCodeAt(i);
 }
