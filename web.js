@@ -1,9 +1,12 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
 var express = require('express');
 
 var app = express.createServer(express.logger());
 
-var fs = require('fs');
-var str = fs.readFileSync('index.html');
+
+var str = fs.readFileSync('/index.html');
 var buffer = new Buffer(str.length);
 for (var i = 0; i < str.length ; i++) {
   buf[i] = str.charCodeAt(i);
