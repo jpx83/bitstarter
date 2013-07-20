@@ -7,10 +7,13 @@ var app = express.createServer(express.logger());
 
 
 var str = fs.readFileSync('index.html');
-var buf = new Buffer(str.length);
-for (var i = 0; i < str.length ; i++) {
-  buf[i] = str.charCodeAt(i);
-}
+
+var buf = new Buffer(str, "utf-8")
+
+//var buf = new Buffer(str.length);
+//for (var i = 0; i < str.length ; i++) {
+//  buf[i] = str.charCodeAt(i);
+//}
 
 app.get('/', function(request, response) {
   response.send(buf);
