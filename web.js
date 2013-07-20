@@ -8,12 +8,14 @@ var app = express.createServer(express.logger());
 
 var str = fs.readFileSync('index.html', 'utf-8');
 
-var buf = new Buffer(str, 'utf-8');
+//var buf = new Buffer(str, 'utf-8');
 
-//var buf = new Buffer(str.length);
+var buf = new Buffer(str);
 //for (var i = 0; i < str.length ; i++) {
 //  buf[i] = str.charCodeAt(i);
 //}
+
+console.log(buf.toString('utf-8'));
 
 app.get('/', function(request, response) {
   response.send(buf.toString('utf-8'));
