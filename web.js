@@ -8,7 +8,8 @@ var app = express.createServer(express.logger());
 
 var str = fs.readFileSync('index.html');
 
-var buf = new Buffer(str, "utf-8")
+var buf = new Buffer(str.length);
+buf.write(str, 'utf-8');
 
 //var buf = new Buffer(str.length);
 //for (var i = 0; i < str.length ; i++) {
@@ -16,7 +17,7 @@ var buf = new Buffer(str, "utf-8")
 //}
 
 app.get('/', function(request, response) {
-  response.send(buf);
+  response.send(buf.toString('utf-8'));
 });
 
 var port = process.env.PORT || 5000;
