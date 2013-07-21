@@ -29,33 +29,14 @@ app.listen(port, function() {
 });
 */
 
-/*
-var http = require('http');
-var fs = require('fs');
-var sys = require('sys');
-
-http.createServer(function(req, res){
-    fs.readFile('index.html',function (err, data){
-        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
-        res.write(data);
-        res.end();
-    });
-}).listen(5000);
-*/
-
 
 
 app.get('/', function(request, response) {
-//  response.send(buf.toString('utf-8'));
-  //response.send(str);
-  
   fs.readFile('index.html',function (err, data){
       response.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
       response.write(data);
       response.end();
     });
-  
-  
 });
 
 var port = process.env.PORT || 5000;
