@@ -46,8 +46,20 @@ var loadChecks = function(checksfile) {
     return JSON.parse(fs.readFileSync(checksfile));
 };
 
+
+var checkHtmlContent = function(htmlfile, checksfile) {
+    $ = htmlfile;
+    var checks = loadChecks(checksfile).sort();
+    var out = {};
+    for(var ii in checks) {
+        var present = $(checks[ii]).length > 0;
+        out[checks[ii]] = present;
+    }
+    return out;
+};
+
 var checkHtmlFile = function(htmlfile, checksfile) {
- $ = htmlfile;
+    $ = cheerioHtmlFile(htmlfile);
     var checks = loadChecks(checksfile).sort();
     var out = {};
     for(var ii in checks) {
@@ -76,7 +88,7 @@ if(require.main == module) {
                 console.log("An error occurred while loading url: %s.", result.message);
                 process.exit(2);
             } else {
-                var checkJson = checkHtmlFile(cheerio.load(result), program.checks);
+                var checkJson = checkHtmlContent(cheerio.load(result), program.checks);
                 var outJson = JSON.stringify(checkJson, null, 4);
                 console.log(outJson);
             }
