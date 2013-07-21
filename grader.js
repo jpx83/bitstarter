@@ -71,3 +71,4 @@ if(require.main == module) {
     console.log(outJson);
 } else {
     exports.checkHtmlFile = checkHtmlFile;
+}    
